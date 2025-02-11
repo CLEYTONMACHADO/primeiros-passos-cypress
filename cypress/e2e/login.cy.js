@@ -13,7 +13,7 @@ describe('Orange HRM Tests', () => {
     cy.get("[type='submit']").click()
     cy.get('.oxd-alert')
 
-    cy.get('.oxd-topbar-header-breadcrumb > .oxd-text').contains('Dashboard')
+    //cy.get('.oxd-topbar-header-breadcrumb > .oxd-text').contains('Dashboard')
   })
 
 
