@@ -15,7 +15,8 @@ describe('Orange HRM Tests', () => {
     genericItem:".oxd-input--active",
     genericItemDropDow:".oxd-select-text",
     closeButton:".--close",
-    submitButton: "[type='submit']"
+    submitButton: "[type='submit']",
+    radioButtonGender:".oxd-radio-wrapper"
     
   }
 
@@ -34,9 +35,16 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorList.genericItem).eq(5).clear().type('1234')
     cy.get(selectorList.genericItem).eq(6).clear().type('2025-14-02')
     cy.get(selectorList.closeButton).click()
+    cy.get(selectorList.genericItemDropDow).eq(0).click()
+    cy.contains('Brazilian').click()
+    cy.get(selectorList.genericItemDropDow).eq(1).click()
+    cy.contains('Single').click()
+    cy.get(selectorList.genericItem).eq(8).clear().type('1984-23-02')
+    cy.get(selectorList.closeButton).click()
+    cy.get(selectorList.radioButtonGender).eq(1).click() //muda o radio button para female
+    
     cy.get(selectorList.submitButton).eq(0).click()
     cy.get('.oxd-toast-close')
-    // cy.get(selectorList.genericItemDropDow).eq(0).type('Brazilian')
 
 
   })
