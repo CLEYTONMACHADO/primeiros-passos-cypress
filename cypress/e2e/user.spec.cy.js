@@ -1,15 +1,18 @@
 import userData from '../fixtures/userData.json'
+import LoginPage from '../pages/loginPage.js'
+import Dashboard from '../pages/dashboardPage.js'
+import Menu from '../pages/menuPage.js'
+
+const login = new LoginPage()
+const dashboard = new Dashboard()
+const menu = new Menu()
 
 describe('Orange HRM Tests', () => {
 
   const selectorList = {
-    usernameField: "[name='username']",
-    passwordField: "[name='password']",
-    loginButton: "[type='submit']",
-    sectionTitleTopBar: ".oxd-topbar-header-breadcrumb > .oxd-text",
-    wrongCredentialAlert: "[role='alert']",
-    dashboardGrid: ".orangehrm-dashboard-grid",
-    myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]',
+    
+    //dashboardGrid: ".orangehrm-dashboard-grid",
+    // myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]',
     firstNameField: "[name='firstName']",
     lastNameField: "[name='lastName']",
     genericItem:".oxd-input--active",
@@ -21,30 +24,32 @@ describe('Orange HRM Tests', () => {
   }
 
   it.only('User Info Upadate - Sucesso', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorList.usernameField).type(userData.userSuccess.username)
-    cy.get(selectorList.passwordField).type(userData.userSuccess.password)
-    cy.get(selectorList.loginButton).click()
-    cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
-    cy.get(selectorList.dashboardGrid)
-    cy.get(selectorList.myInfoButton).click()
-    cy.get(selectorList.firstNameField).clear().type('Primeiro Nome')
-    cy.get(selectorList.lastNameField).clear().type('Nick Name')
-    cy.get(selectorList.genericItem).eq(3).clear().type('0123')
-    cy.get(selectorList.genericItem).eq(4).clear().type('321')
-    cy.get(selectorList.genericItem).eq(5).clear().type('1234')
-    cy.get(selectorList.genericItem).eq(6).clear().type('2025-14-02')
-    cy.get(selectorList.closeButton).click()
-    cy.get(selectorList.genericItemDropDow).eq(0).click()
-    cy.contains('Brazilian').click()
-    cy.get(selectorList.genericItemDropDow).eq(1).click()
-    cy.contains('Single').click()
-    cy.get(selectorList.genericItem).eq(8).clear().type('1984-23-02')
-    cy.get(selectorList.closeButton).click()
-    cy.get(selectorList.radioButtonGender).eq(1).click() //muda o radio button para female
+    login.acessLoginPage()
+    login.loginWithAnyUser(userData.userSuccess.username, userData.userSuccess.password)
+    dashboard.checkDashboardConfirm()
+    menu.acessMyInfo()
     
-    cy.get(selectorList.submitButton).eq(0).click()
-    cy.get('.oxd-toast-close')
+   
+    // cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
+    // cy.get(selectorList.dashboardGrid)
+    // cy.get(selectorList.myInfoButton).click()
+    // cy.get(selectorList.firstNameField).clear().type('Primeiro Nome')
+    // cy.get(selectorList.lastNameField).clear().type('Nick Name')
+    // cy.get(selectorList.genericItem).eq(3).clear().type('0123')
+    // cy.get(selectorList.genericItem).eq(4).clear().type('321')
+    // cy.get(selectorList.genericItem).eq(5).clear().type('1234')
+    // cy.get(selectorList.genericItem).eq(6).clear().type('2025-14-02')
+    // cy.get(selectorList.closeButton).click()
+    // cy.get(selectorList.genericItemDropDow).eq(0).click()
+    // cy.contains('Brazilian').click()
+    // cy.get(selectorList.genericItemDropDow).eq(1).click()
+    // cy.contains('Single').click()
+    // cy.get(selectorList.genericItem).eq(8).clear().type('1984-23-02')
+    // cy.get(selectorList.closeButton).click()
+    // cy.get(selectorList.radioButtonGender).eq(1).click() //muda o radio button para female
+    
+    // cy.get(selectorList.submitButton).eq(0).click()
+    // cy.get('.oxd-toast-close')
 
 
   })
