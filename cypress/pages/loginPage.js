@@ -20,6 +20,10 @@ class LoginPage{
         cy.get(this.selectorList().loginButton).click()
 
     }
+
+    loginInvalid(){
+        cy.get('body').should('contain', 'Invalid credentials')
+    }
 }
 
 export default LoginPage  // deve colocar para poder exportar a classe, e ela ser chamada em outros lugares.
