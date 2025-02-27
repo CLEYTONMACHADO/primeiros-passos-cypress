@@ -23,20 +23,6 @@ describe('Orange HRM Tests', () => {
     myInfoPage.saveForm()
   
   })
-  it.only('Login - Fail', () => {
-      login.acessLoginPage()
-      login.loginWithAnyUser(userData.userFail.username,userData.userFail.password)
 
-      login.loginInvalid()
-
-    
-    
-    
-    // cy.visit('/auth/login')
-    // cy.get(selectorList.usernameField).type(userData.userFail.username)
-    // cy.get(selectorList.passwordField).type(userData.userFail.password)
-    // cy.get(selectorList.loginButton).click()
-    // cy.get(selectorList.wrongCredentialAlert)
-  })
 
 })
